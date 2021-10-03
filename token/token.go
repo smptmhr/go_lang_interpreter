@@ -15,6 +15,10 @@ const (
 	IDENT = "IDENT" //add,foobar,s,y,...
 	INT   = "INT"   //1343456
 
+	//演算子
+	ASSIGN = "="
+	PLUS   = "+"
+
 	//デリミタ
 	COMMA     = ","
 	SEMICOLON = ";"
