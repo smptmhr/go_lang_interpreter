@@ -12,8 +12,8 @@ const (
 	EOF     = "EOF"
 
 	//識別子+リテラル
-	INDENT = "INDENT" //add,foobar,s,y,...
-	INT    = "INT"    //1343456
+	IDENT = "IDENT" //add,foobar,s,y,...
+	INT   = "INT"   //1343456
 
 	//デリミタ
 	COMMA     = ","
