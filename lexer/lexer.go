@@ -9,12 +9,13 @@ type Lexer struct {
 
 func New(input string) *Lexer {
 	l := &Lexer{input: input}
+	l.readChar() //l.ch,position,readPositionを初期化
 	return l
 }
 
 func (l *Lexer) readChar() {
 	if l.readPosition >= len(l.input) {
-		l.ch = 0
+		l.ch = 0 //ASCII:"NUL"
 	} else {
 		l.ch = l.input[l.readPosition]
 	}
