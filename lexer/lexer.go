@@ -57,7 +57,7 @@ func (l *Lexer) NextToken() token.Token {
 			return tok
 		} else if isDigit(l.ch) {
 			tok.Type = token.INT
-			took.Literal = l.readNumber()
+			tok.Literal = l.readNumber()
 			return tok
 		} else {
 			tok = newToken(token.ILLEGAL, l.ch)
@@ -86,8 +86,8 @@ func (l *Lexer) readNumber() string {
 	return l.input[position:l.position]
 }
 
-func (ch byte) isDigit bool{
-	return '0'<=ch && ch<='9'
+func isDigit(ch byte) bool {
+	return '0' <= ch && ch <= '9'
 }
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
