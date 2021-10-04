@@ -29,6 +29,6 @@ const (
 	RBRACE = "}"
 
 	//キーワード
-	FUNCTIOIN = "FUNCTION"
-	LET       = "LET"
+	FUNCTION = "FUNCTION"
+	LET      = "LET"
 )
