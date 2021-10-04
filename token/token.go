@@ -12,6 +12,13 @@ var keywords = map[string]TokenType{
 	"let": LET,
 }
 
+func LookupIndent(indent string) TokenType {
+	if tok, ok := keywords[indent]; ok {
+		return tok
+	}
+	return IDENT
+}
+
 const (
 	ILLEGAL = "ILLEGAL"
 	EOF     = "EOF"
