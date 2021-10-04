@@ -63,7 +63,7 @@ func (l *Lexer) NextToken() token.Token {
 
 func (l *Lexer) readIdentifier() string {
 	position := l.position
-	for isLetter(l.ch) {
+	for isLetter(l.ch) { //識別子を読んで、非英字に達するまで字句解析を進める
 		l.readChar()
 	}
 	return l.input[position:l.position]
