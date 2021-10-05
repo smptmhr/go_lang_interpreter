@@ -18,7 +18,7 @@ func TestNextToken(t *testing.T) {
 	!-/*5;
 	5 < 10 > 5;
 
-	it (5 < 10){
+	if (5 < 10){
 		return true;
 	}else{
 		return false;
