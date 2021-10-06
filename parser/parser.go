@@ -16,7 +16,7 @@ type Parser struct {
 func New(l *lexer.Lexer) *Parser {
 	p := &Parser{l: l}
 
-	//2つのトークをん読み込む。currentTokenとpeekTokenの両方がセットされる。
+	//2つのトークン読み込む。currentTokenとpeekTokenの両方がセットされる。
 	p.nextToken()
 	p.nextToken()
 
