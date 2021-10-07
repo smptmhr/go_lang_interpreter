@@ -16,6 +16,14 @@ type Expression interface {
 	expressionNode()
 }
 
+type ExpressionStatement struct {
+	Token      token.Token //式の最初のトークン
+	Expression Expression
+}
+
+func (es *ExpressionStatement) statementNode()       {}
+func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
+
 type Program struct {
 	Statements []Statement
 }
