@@ -8,7 +8,7 @@ import (
 )
 
 type (
-	prefixParseFn func() ast.Expressioin
+	prefixParseFn func() ast.Expression
 	infixParseFn  func(ast.Expression) ast.Expression
 )
 
