@@ -23,6 +23,17 @@ type Parser struct {
 	infixParseFns  map[token.TokenType]infixParseFn
 }
 
+const (
+	_ int = iota
+	LOWSET
+	EQUALS      // =
+	LESSGREATER // < OR >
+	SUM         // +
+	PRODUCT     // *
+	PREFIX      // -X OR !X
+	CALL        // myFunction(X)
+)
+
 func New(l *lexer.Lexer) *Parser {
 	p := &Parser{
 		l:      l,
