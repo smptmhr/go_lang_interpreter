@@ -247,7 +247,7 @@ func TestParsingInfixExpressions(t *testing.T) {
 
 		stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
 		if !ok {
-			t.Fatalf("program.Statements[0] in not as.ExpressionStatements. got=%T", program.Statements[0])
+			t.Fatalf("program.Statements[0] is not ast.ExpressionStatement. got=%T", program.Statements[0])
 		}
 
 		exp, ok := stmt.Expression.(*ast.InfixExpression)
@@ -295,7 +295,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 			"((a * b) * c)",
 		},
 		{
-			"a * b /c",
+			"a * b / c",
 			"((a * b) / c)",
 		},
 		{
@@ -311,11 +311,11 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 			"(3 + 4)((-5) * 5)",
 		},
 		{
-			" 5 > 4 == 3 < 4",
+			"5 > 4 == 3 < 4",
 			"((5 > 4) == (3 < 4))",
 		},
 		{
-			" 5 > 4 != 3 > 4",
+			"5 > 4 != 3 > 4",
 			"((5 > 4) != (3 > 4))",
 		},
 		{
@@ -373,7 +373,7 @@ func testLiteralExpression(
 	return false
 }
 
-func testInfixExpressoni(t *testing.T, exp ast.Expression, left interface{},
+func testInfixExpression(t *testing.T, exp ast.Expression, left interface{},
 	operator string, right interface{}) bool {
 
 	opExp, ok := exp.(*ast.InfixExpression)
