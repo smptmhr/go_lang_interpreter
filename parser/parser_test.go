@@ -507,16 +507,16 @@ func TestIfExpredssiion(t *testing.T) {
 		return
 	}
 
-	if len(exp.Conseqence.Statements) != 1 {
-		t.Errorf("conseqence is not 1 statements. got=%d\n", len(exp.Conseqence.Statements))
+	if len(exp.Consequence.Statements) != 1 {
+		t.Errorf("consequence is not 1 statements. got=%d\n", len(exp.Consequence.Statements))
 	}
 
-	conseqence, ok := exp.Conseqence.Statements[0].(*ast.ExpressionStatement)
+	consequence, ok := exp.Consequence.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
-		t.Fatalf("Statements[0] is not ast.ExpresssionStatements. got=%T", exp.Conseqence.Statements[0])
+		t.Fatalf("Statements[0] is not ast.ExpresssionStatements. got=%T", exp.Consequence.Statements[0])
 	}
 
-	if !testIdentifier(t, conseqence.Expression, "x") {
+	if !testIdentifier(t, consequence.Expression, "x") {
 		return
 	}
 	if exp.Alternative != nil {
@@ -552,15 +552,15 @@ func TestIfElseExpression(t *testing.T) {
 		return
 	}
 
-	if len(exp.Conseqence.Statements) != 1 {
+	if len(exp.Consequence.Statements) != 1 {
 		t.Errorf("consequence is not 1 statements. got=%d\n",
-			len(exp.Conseqence.Statements))
+			len(exp.Consequence.Statements))
 	}
 
-	consequence, ok := exp.Conseqence.Statements[0].(*ast.ExpressionStatement)
+	consequence, ok := exp.Consequence.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
 		t.Fatalf("Statements[0] is not ast.ExpressionStatement. got=%T",
-			exp.Conseqence.Statements[0])
+			exp.Consequence.Statements[0])
 	}
 
 	if !testIdentifier(t, consequence.Expression, "x") {

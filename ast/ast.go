@@ -167,7 +167,7 @@ func (b *Boolean) String() string       { return b.Token.Literal }
 type IfExpression struct {
 	Token       token.Token
 	Condition   Expression
-	Conseqence  *BlockStatement
+	Consequence *BlockStatement
 	Alternative *BlockStatement
 }
 
@@ -178,7 +178,7 @@ func (ie *IfExpression) String() string {
 	out.WriteString("if")
 	out.WriteString(ie.Condition.String())
 	out.WriteString(" ")
-	out.WriteString(ie.Conseqence.String())
+	out.WriteString(ie.Consequence.String())
 	if ie.Alternative != nil {
 
 		out.WriteString("else ")
