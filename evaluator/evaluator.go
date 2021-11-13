@@ -31,7 +31,7 @@ func Eval(node ast.Node) object.Object {
 		return evalInfixExpression(node.Operator, left, right)
 
 	case *ast.BlockStatement:
-		return evalStatements(node.Statements)
+		return evalBlockStatement(node)
 
 	case *ast.IfExpression:
 		return evalIfExpression(node)
@@ -48,6 +48,18 @@ func Eval(node ast.Node) object.Object {
 		return nativeBoolToBooleanObject(node.Value)
 	}
 	return nil
+}
+
+func evalBlockStatement(block *ast.BlockStatement) object.Object {
+	var result object.Object
+
+	for _, statement := range block.Statements {
+		result = Eval(statement)
+		if result != nil && result.Type() == object.RETRUN_VALUE_OBJ {
+			return result
+		}
+	}
+	return result
 }
 
 func evalIfExpression(ie *ast.IfExpression) object.Object {
