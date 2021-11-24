@@ -51,10 +51,12 @@ const (
 	COMMA     = ","
 	SEMICOLON = ";"
 
-	LPAREN = "("
-	RPAREN = ")"
-	LBRACE = "{"
-	RBRACE = "}"
+	LPAREN   = "("
+	RPAREN   = ")"
+	LBRACE   = "{"
+	RBRACE   = "}"
+	LBEACKET = "["
+	RBRACKET = "]"
 
 	//キーワード
 	FUNCTION = "FUNCTION"
