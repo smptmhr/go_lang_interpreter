@@ -55,7 +55,7 @@ const (
 	RPAREN   = ")"
 	LBRACE   = "{"
 	RBRACE   = "}"
-	LBEACKET = "["
+	LBRACKET = "["
 	RBRACKET = "]"
 
 	//キーワード
