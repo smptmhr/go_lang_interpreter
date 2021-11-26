@@ -377,7 +377,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 		},
 		{
 			"add(a * b[2], b[1], 2 * [1, 2][1])",
-			"add((a * b[2]), (b[1]), (2 * ([1, 2][1])))",
+			"add((a * (b[2])), (b[1]), (2 * ([1, 2][1])))",
 		},
 	}
 
@@ -774,7 +774,7 @@ func TestParsingIndexExpression(t *testing.T) {
 	if !testIdentifier(t, indexExp.Left, "myArray") {
 		return
 	}
-	if !testInfixExpression(t, indexExp, 1, "+", 1) {
+	if !testInfixExpression(t, indexExp.Index, 1, "+", 1) {
 		return
 	}
 }
