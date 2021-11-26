@@ -288,8 +288,8 @@ type IndexExpression struct {
 	Index Expression
 }
 
-func (ie *IndexExpression) expressionNode()     {}
-func (ie *IndexExpression) TokenLitera() string { return ie.Token.Literal }
+func (ie *IndexExpression) expressionNode()      {}
+func (ie *IndexExpression) TokenLiteral() string { return ie.Token.Literal }
 func (ie *IndexExpression) String() string {
 	var out bytes.Buffer
 
