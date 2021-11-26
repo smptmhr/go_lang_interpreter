@@ -276,7 +276,7 @@ func (al *ArrayLiteral) String() string {
 	}
 
 	out.WriteString("[")
-	out.WriteString(strings.Join(elements, ","))
+	out.WriteString(strings.Join(elements, ", "))
 	out.WriteString("]")
 
 	return out.String()
