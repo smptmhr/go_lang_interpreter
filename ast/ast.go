@@ -307,7 +307,7 @@ type HashLiteral struct {
 	Pairs map[Expression]Expression
 }
 
-func (hl *HashLiteral) expressioniNode()     {}
+func (hl *HashLiteral) expressionNode()      {}
 func (hl *HashLiteral) TokenLiteral() string { return hl.Token.Literal }
 func (hl *HashLiteral) String() string {
 	var out bytes.Buffer
