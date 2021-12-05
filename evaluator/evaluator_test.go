@@ -509,7 +509,7 @@ func TestHashIndexExpressions(t *testing.T) {
 		expected interface{}
 	}{
 		{
-			`{"foo}: 5["foo]`,
+			`{"foo": 5}["foo"]`,
 			5,
 		},
 		{
