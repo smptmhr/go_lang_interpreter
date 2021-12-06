@@ -6,6 +6,7 @@ import (
 	"monkey/repl"
 	"os"
 	"os/user"
+	"strings"
 )
 
 func main() {
@@ -22,6 +23,12 @@ func main() {
 		repl.ReplFromCommandLine(os.Stdin, os.Stdout)
 
 	case 1:
+		pos := strings.LastIndex(filename[0], ".")
+		extension := filename[0][pos:]
+		if extension != ".monkey" {
+			fmt.Printf("The extension must be '.monkey'\n")
+			return
+		}
 		fp, err := os.Open(filename[0])
 		if err != nil {
 			panic(err)
