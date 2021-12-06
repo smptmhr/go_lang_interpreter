@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bufio"
 	"flag"
 	"fmt"
 	"monkey/repl"
@@ -20,18 +19,14 @@ func main() {
 		}
 		fmt.Printf("hello %s! This is the Monkey programming language!\n", user.Username)
 		fmt.Printf("Feel free to type in commands\n")
-		repl.Start(os.Stdin, os.Stdout)
+		repl.ReplFromCommandLine(os.Stdin, os.Stdout)
 
 	case 1:
 		fp, err := os.Open(filename[0])
 		if err != nil {
 			panic(err)
 		}
-
-		scanner := bufio.NewScanner(fp)
-		for scanner.Scan() {
-			fmt.Println(scanner.Text())
-		}
+		repl.ReplFromFile(fp, os.Stdin, os.Stdout)
 		fp.Close()
 
 	default:

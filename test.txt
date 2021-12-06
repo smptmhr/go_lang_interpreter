@@ -1,1 +1,8 @@
-this is test message
+(5 + 10 * 2 + 15 / 3) * 2 + -10
+true
+1 < 2
+let a = 2
+a
+let b = 3
+b
+a < b
