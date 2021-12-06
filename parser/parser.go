@@ -248,6 +248,8 @@ func (p *Parser) parseStatement() ast.Statement {
 		return p.parseLetStatement()
 	case token.RETURN:
 		return p.parseReturnStatement()
+	case token.COMMENT:
+		return p.parseCommentStatement()
 	default:
 		return p.parseExpressionStatement()
 	}
@@ -312,6 +314,15 @@ func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
 	stmt.Expression = p.parseExpression(LOWEST)
 
 	if p.peekTokenIs(token.SEMICOLON) {
+		p.nextToken()
+	}
+	return stmt
+}
+
+func (p *Parser) parseCommentStatement() *ast.CommentStatement {
+
+	stmt := &ast.CommentStatement{Token: p.currentToken}
+	for !p.peekTokenIs(token.EOF) {
 		p.nextToken()
 	}
 	return stmt
