@@ -875,3 +875,26 @@ func TestParsingHashLiteralsWithExpressions(t *testing.T) {
 		testFunc(value)
 	}
 }
+
+func TestCommentOutStatement(t *testing.T) {
+	tests := []struct {
+		input         string
+		expectedValue interface{}
+	}{
+		{input: "//this is comment", expectedValue: nil},
+		{input: "//let a = 10", expectedValue: nil},
+	}
+
+	for _, tt := range tests {
+		l := lexer.New(tt.input)
+		p := New(l)
+		program := p.ParseProgram()
+		checkParserErrors(t, p)
+
+		stmt := program.Statements[0]
+		_, ok := stmt.(*ast.CommentStatement)
+		if !ok {
+			t.Fatalf("exp is not *ast.CommentStatement. got=%T", stmt)
+		}
+	}
+}
