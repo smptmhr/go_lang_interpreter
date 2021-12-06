@@ -27,7 +27,7 @@ func ReplFromCommandLine(in io.Reader, out io.Writer) {
 	}
 }
 
-func ReplFromFile(source *os.File, in io.Reader, out io.Writer) {
+func ReplFromFile(source *os.File, out io.Writer) {
 	scanner := bufio.NewScanner(source)
 	env := object.NewEnvironment()
 

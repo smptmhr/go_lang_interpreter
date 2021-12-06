@@ -26,7 +26,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		repl.ReplFromFile(fp, os.Stdin, os.Stdout)
+		repl.ReplFromFile(fp, os.Stdout)
 		fp.Close()
 
 	default:
