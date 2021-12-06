@@ -109,6 +109,9 @@ func Eval(node ast.Node, env *object.Environment) object.Object {
 		return evalIndexExpression(left, index)
 	case *ast.HashLiteral:
 		return evalHashLiteral(node, env)
+
+	case *ast.CommentStatement:
+		return nil
 	}
 	return nil
 }
