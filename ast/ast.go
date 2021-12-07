@@ -322,3 +322,13 @@ func (hl *HashLiteral) String() string {
 
 	return out.String()
 }
+
+type CommentStatement struct {
+	Token token.Token // '//'トークン
+}
+
+func (cs *CommentStatement) statementNode()       {}
+func (cs *CommentStatement) TokenLiteral() string { return cs.Token.Literal }
+func (cs *CommentStatement) String() string {
+	return "//"
+}
