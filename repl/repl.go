@@ -16,9 +16,11 @@ const PROMPT = ">> "
 func ReplFromCommandLine(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
 	env := object.NewEnvironment()
+	line := 0
 
 	for {
-		fmt.Printf(PROMPT)
+		line++
+		fmt.Printf("line %d %s", line, PROMPT)
 		scanned := scanner.Scan()
 		if !scanned {
 			return
@@ -30,12 +32,15 @@ func ReplFromCommandLine(in io.Reader, out io.Writer) {
 func ReplFromFile(source *os.File, out io.Writer) {
 	scanner := bufio.NewScanner(source)
 	env := object.NewEnvironment()
+	line := 0
 
 	for {
+		line++
 		scanned := scanner.Scan()
 		if !scanned {
 			return
 		}
+		fmt.Printf("line %d : ", line)
 		repl(scanner, out, env)
 	}
 }
