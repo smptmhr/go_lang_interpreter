@@ -36,12 +36,13 @@ func TestEvalIntegerExpression(t *testing.T) {
 }
 
 func testEval(input string) object.Object {
+	line := 1
 	l := lexer.New(input)
-	p := parser.New(l)
+	p := parser.New(l, line)
 	program := p.ParseProgram()
 	env := object.NewEnvironment()
 
-	return Eval(program, env)
+	return Eval(program, env, line)
 }
 
 func testIntegerObject(t *testing.T, obj object.Object, expected int64) bool {
@@ -186,31 +187,31 @@ func TestErrorHandling(t *testing.T) {
 	}{
 		{
 			"foobar",
-			"identifier not found: foobar",
+			"line 1 : identifier not found: foobar",
 		},
 		{
 			"5 + true;",
-			"type mismatch: INTEGER + BOOLEAN",
+			"line 1 : type mismatch: INTEGER + BOOLEAN",
 		},
 		{
 			"5 + true; 5;",
-			"type mismatch: INTEGER + BOOLEAN",
+			"line 1 : type mismatch: INTEGER + BOOLEAN",
 		},
 		{
 			"-true",
-			"unknown operator: -BOOLEAN",
+			"line 1 : unknown operator: -BOOLEAN",
 		},
 		{
 			"true + false",
-			"unknown operator: BOOLEAN + BOOLEAN",
+			"line 1 : unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
 			"5; true + false; 5",
-			"unknown operator: BOOLEAN + BOOLEAN",
+			"line 1 : unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
 			"if(10 > 1) { true + false; }",
-			"unknown operator: BOOLEAN + BOOLEAN",
+			"line 1 : unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
 			`
@@ -221,15 +222,15 @@ func TestErrorHandling(t *testing.T) {
 				return 1;
 			}
 			`,
-			"unknown operator: BOOLEAN + BOOLEAN",
+			"line 3 : unknown operator: BOOLEAN + BOOLEAN",
 		},
 		{
 			`"Hello" - "world"`,
-			"unknown operator: STRING - STRING",
+			"line 1 : unknown operator: STRING - STRING",
 		},
 		{
 			`{"name": "Monkey"}[fn(x){ x }];`,
-			"unusable as hash key: FUNCTION",
+			"line 1 : unusable as hash key: FUNCTION",
 		},
 	}
 	for _, tt := range tests {
