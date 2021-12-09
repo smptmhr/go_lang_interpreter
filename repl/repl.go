@@ -25,7 +25,7 @@ func ReplFromCommandLine(in io.Reader, out io.Writer) {
 		if !scanned {
 			return
 		}
-		repl(scanner, out, env)
+		repl(scanner, out, env, line)
 	}
 }
 
@@ -40,21 +40,20 @@ func ReplFromFile(source *os.File, out io.Writer) {
 		if !scanned {
 			return
 		}
-		fmt.Printf("line %d : ", line)
-		repl(scanner, out, env)
+		repl(scanner, out, env, line)
 	}
 }
 
 func printParserErrors(out io.Writer, errors []string) {
 	for _, msg := range errors {
-		io.WriteString(out, "\t"+msg+"\n")
+		io.WriteString(out, "ERROR : "+msg+"\n")
 	}
 }
 
-func repl(scanner *bufio.Scanner, out io.Writer, env *object.Environment) {
-	line := scanner.Text()
-	l := lexer.New(line)
-	p := parser.New(l)
+func repl(scanner *bufio.Scanner, out io.Writer, env *object.Environment, line int) {
+	source := scanner.Text()
+	l := lexer.New(source)
+	p := parser.New(l, line)
 
 	program := p.ParseProgram()
 	if len(p.Errors()) != 0 {
