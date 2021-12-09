@@ -60,7 +60,7 @@ func repl(scanner *bufio.Scanner, out io.Writer, env *object.Environment, line i
 		printParserErrors(out, p.Errors())
 		return
 	}
-	evaluated := evaluator.Eval(program, env)
+	evaluated := evaluator.Eval(program, env, line)
 	if evaluated != nil {
 		io.WriteString(out, evaluated.Inspect())
 		io.WriteString(out, "\n")
